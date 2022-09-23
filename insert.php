@@ -7,10 +7,12 @@ header("Content-Type: application/json; charset=UTF-8");
 $response = array();
  
 // Check if we got the field from the user
-if (isset($_GET['temp']) && isset($_GET['hum'])) {
+if (isset($_GET['Battery']) && isset($_GET['speed'])&& isset($_GET['temp'])&& isset($_GET['odameter'])) {
  
+    $Battery = $_GET['Battery'];
+    $speed = $_GET['speed'];
     $temp = $_GET['temp'];
-    $hum = $_GET['hum'];
+    $odameter = $_GET['odameter'];
  
     // Include data base connect class
     $filepath = realpath (dirname(__FILE__));
@@ -20,14 +22,14 @@ if (isset($_GET['temp']) && isset($_GET['hum'])) {
     // Connecting to database 
     $db = new DB_CONNECT();
  
-    // Fire SQL query to insert data in weather
-    $result = mysql_query("INSERT INTO weather(temp,hum) VALUES('$temp','$hum')");
+    // Fire SQL query to insert data in Ebike
+    $result = mysql_query("INSERT INTO Ebike(Battery,speed,temp,odameter) VALUES('$Battery','$speed','$temp','$odameter')");
  
     // Check for succesfull execution of query
     if ($result) {
         // successfully inserted 
         $response["success"] = 1;
-        $response["message"] = "Weather successfully created.";
+        $response["message"] = "Ebike successfully created.";
  
         // Show JSON response
         echo json_encode($response);
