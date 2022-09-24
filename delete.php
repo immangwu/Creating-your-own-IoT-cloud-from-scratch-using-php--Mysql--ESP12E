@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     $db = new DB_CONNECT();
  
     // Fire SQL query to delete weather data by id
-    $result = mysql_query("DELETE FROM weather WHERE id = $id");
+    $result = mysql_query("DELETE FROM Ebike WHERE id = $id");
  
     // Check for succesfull execution of query
     if (mysql_affected_rows() > 0) {
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
     } else {
         // no matched id found
         $response["success"] = 0;
-        $response["message"] = "No weather data found by given id";
+        $response["message"] = "No Ebike data found by given id";
  
         // Echo the failed response
         echo json_encode($response);
