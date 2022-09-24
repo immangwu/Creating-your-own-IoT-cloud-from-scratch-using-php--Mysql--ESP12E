@@ -18,7 +18,7 @@ if (isset($_GET["id"])) {
     $id = $_GET['id'];
  
      // Fire SQL query to get weather data by id
-    $result = mysql_query("SELECT *FROM weather WHERE id = '$id'");
+    $result = mysql_query("SELECT *FROM Ebike WHERE id = '$id'");
 	
 	//If returned result is not empty
     if (!empty($result)) {
@@ -30,24 +30,26 @@ if (isset($_GET["id"])) {
             $result = mysql_fetch_array($result);
 			
 			// temperoary user array
-            $weather = array();
-            $weather["id"] = $result["id"];
-            $weather["temp"] = $result["temp"];
-			$weather["hum"] = $result["hum"];
+            $Ebike= array();
+            $Ebike["id"] = $result["id"];
+            $Ebike["Battery"] = $result["Battery"];
+	    $Ebike["speed"] = $result["speed"];
+	    $Ebike["temp"] = $result["temp"];
+	    $Ebike["odameter"] = $result["odameter"];
           
             $response["success"] = 1;
 
-            $response["weather"] = array();
+            $response["Ebike"] = array();
 			
 			// Push all the items 
-            array_push($response["weather"], $weather);
+            array_push($response["Ebike"], $Ebike);
  
             // Show JSON response
             echo json_encode($response);
         } else {
             // If no data is found
             $response["success"] = 0;
-            $response["message"] = "No data on weather found";
+            $response["message"] = "No data on Ebike found";
  
             // Show JSON response
             echo json_encode($response);
@@ -55,7 +57,7 @@ if (isset($_GET["id"])) {
     } else {
         // If no data is found
         $response["success"] = 0;
-        $response["message"] = "No data on weather found";
+        $response["message"] = "No data on Ebike found";
  
         // Show JSON response
         echo json_encode($response);
