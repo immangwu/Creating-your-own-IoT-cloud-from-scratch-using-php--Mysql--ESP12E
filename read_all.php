@@ -15,24 +15,26 @@ require_once($filepath."/db_connect.php");
 $db = new DB_CONNECT();	
  
  // Fire SQL query to get all data from weather
-$result = mysql_query("SELECT *FROM weather") or die(mysql_error());
+$result = mysql_query("SELECT *FROM Ebike") or die(mysql_error());
  
 // Check for succesfull execution of query and no results found
 if (mysql_num_rows($result) > 0) {
     
 	// Storing the returned array in response
-    $response["weather"] = array();
+    $response["Ebike"] = array();
  
 	// While loop to store all the returned response in variable
     while ($row = mysql_fetch_array($result)) {
         // temperoary user array
-        $weather = array();
-        $weather["id"] = $row["id"];
-        $weather["temp"] = $row["temp"];
-		$weather["hum"] = $row["hum"];
+        $Ebike = array();
+        $Ebike["id"] = $row["id"];
+        $Ebike["Battery"] = $row["Battery"];
+	$Ebike["speed"] = $row["speed"];
+	$Ebike["temp"] = $row["temp"];
+	$Ebike["odameter"] = $row["odameter"];
 
 		// Push all the items 
-        array_push($response["weather"], $weather);
+        array_push($response["Ebike"], $Ebike);
     }
     // On success
     $response["success"] = 1;
@@ -44,7 +46,7 @@ else
 {
     // If no data is found
 	$response["success"] = 0;
-    $response["message"] = "No data on weather found";
+    $response["message"] = "No data on Ebike found";
  
     // Show JSON response
     echo json_encode($response);
