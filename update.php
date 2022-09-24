@@ -8,10 +8,10 @@ header("Content-Type: application/json; charset=UTF-8");
 $response = array();
  
 // Check if we got the field from the user
-if (isset($_GET['id']) && isset($_GET['temp'])) {
+if (isset($_GET['id']) && isset($_GET['Battery'])) {
  
     $id = $_GET['id'];
-    $temp= $_GET['temp'];
+    $Battery= $_GET['Battery'];
     
  
     // Include data base connect class
@@ -22,13 +22,13 @@ if (isset($_GET['id']) && isset($_GET['temp'])) {
     $db = new DB_CONNECT();
  
 	// Fire SQL query to update weather data by id
-    $result = mysql_query("UPDATE weather SET temp= '$temp' WHERE id = '$id'");
+    $result = mysql_query("UPDATE Ebike SET Battery= '$Battery' WHERE id = '$id'");
  
     // Check for succesfull execution of query and no results found
     if ($result) {
         // successfully updation of temp (temperature)
         $response["success"] = 1;
-        $response["message"] = "Weather Data successfully updated.";
+        $response["message"] = "Ebike Data successfully updated.";
  
         // Show JSON response
         echo json_encode($response);
